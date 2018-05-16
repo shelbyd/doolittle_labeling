@@ -18,6 +18,8 @@ Well understood examples will have a large disparity between classes. Ex `[0.001
 Poorly understood examples will have a relatively uniform prediction between classes. Ex `[0.23, 0.31, 0.15, 0.22]`.
 This strategy chooses to have the "human" label the latter data as it will provide more useful information to the system.
 
+Otherwise, the network is trained with the small set of examples in a very standard way.
+
 ## Results
 
 The following notebook, [lazy_mnist.ipynb](lazy_mnist.ipynb), demonstrates how a simple densely connected neural network can achieve ~90% test accuraccy on the full dataset with only 500 labeled images, compared to the usual 60,000.
@@ -35,9 +37,11 @@ It is quite conclusive that the consecutive training provides little to no benef
 
 ![1000 examples CNN mnist](lazy_mnist_cnn_1000.png)
 
+The following notebook, [lazy_mnist_cnn_stddev.ipynb](lazy_mnist_cnn_stddev.ipynb), shows that labeling the example with the smallest standard deviation was nearly as effective. It does not show that calculating the standard deviation was dramatically slower, therefore effectively not worth it.
+
 ## Further work
 
-1. Improvements to the "least understood example" selection technique. This smallest maximum works well for classification tasks.
+1. Improvements to the "least understood example" selection technique. This smallest maximum should work well for classification tasks.
 1. Testing against more complex data sets with more complex networks.
 1. Running interactively with a human manually labeling the data during training. I weakly conjecture that some of the examples in the MNIST data set may be mislabeled or ambiguous, resulting in poorer than possible performance of this technique. This technique should discover those examples first and place greater relative weight on those than the full dataset would.
 
